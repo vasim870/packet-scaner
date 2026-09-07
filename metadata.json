@@ -1,0 +1,6 @@
+{
+  "name": "Packet Scanner",
+  "description": "AI-powered scanner for packaged goods enforcing Legal Metrology (Packaged Commodities) Rules 2011, with crowd-sourced Pan-India store violation mapping and official consumer grievance generation.",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

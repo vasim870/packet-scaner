@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="pccs-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#047857" />
+      <stop offset="100%" stop-color="#064e3b" />
+    </linearGradient>
+    <linearGradient id="gold-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b" />
+      <stop offset="100%" stop-color="#d97706" />
+    </linearGradient>
+  </defs>
+  <!-- Background with rounded squircle for mobile app -->
+  <rect width="512" height="512" rx="110" fill="url(#pccs-grad)" />
+  
+  <!-- Outer Scanner Frame corners -->
+  <path d="M 96 160 L 96 112 A 16 16 0 0 1 112 96 L 160 96" stroke="#34d399" stroke-width="16" stroke-linecap="round" fill="none" />
+  <path d="M 352 96 L 400 96 A 16 16 0 0 1 416 112 L 416 160" stroke="#34d399" stroke-width="16" stroke-linecap="round" fill="none" />
+  <path d="M 416 352 L 416 400 A 16 16 0 0 1 400 416 L 352 416" stroke="#34d399" stroke-width="16" stroke-linecap="round" fill="none" />
+  <path d="M 160 416 L 112 416 A 16 16 0 0 1 96 400 L 96 352" stroke="#34d399" stroke-width="16" stroke-linecap="round" fill="none" />
+  
+  <!-- Central Balance Scale (Legal Metrology) -->
+  <path d="M 256 140 L 256 360" stroke="#ffffff" stroke-width="16" stroke-linecap="round" />
+  <path d="M 200 360 L 312 360" stroke="#ffffff" stroke-width="16" stroke-linecap="round" />
+  <path d="M 160 190 L 352 190" stroke="#ffffff" stroke-width="14" stroke-linecap="round" />
+  <circle cx="256" cy="140" r="14" fill="url(#gold-grad)" />
+  
+  <!-- Left Scale Pan -->
+  <path d="M 160 190 L 128 270" stroke="#a7f3d0" stroke-width="8" stroke-linecap="round" />
+  <path d="M 160 190 L 192 270" stroke="#a7f3d0" stroke-width="8" stroke-linecap="round" />
+  <path d="M 112 270 Q 160 300 208 270 Z" fill="url(#gold-grad)" />
+
+  <!-- Right Scale Pan -->
+  <path d="M 352 190 L 320 270" stroke="#a7f3d0" stroke-width="8" stroke-linecap="round" />
+  <path d="M 352 190 L 384 270" stroke="#a7f3d0" stroke-width="8" stroke-linecap="round" />
+  <path d="M 304 270 Q 352 300 400 270 Z" fill="url(#gold-grad)" />
+  
+  <!-- Scanner Beam -->
+  <line x1="80" y1="230" x2="432" y2="230" stroke="#34d399" stroke-width="6" stroke-dasharray="12 8" opacity="0.85" />
+</svg>

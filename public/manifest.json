@@ -1,0 +1,43 @@
+{
+  "id": "/",
+  "name": "Packet Scanner",
+  "short_name": "Packet Scanner",
+  "description": "Mobile compliance scanner for packaged commodities enforcing Legal Metrology Rules 2011, Dual MRP detection, and Pan-India violation tracking.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "theme_color": "#065f46",
+  "background_color": "#064e3b",
+  "categories": ["government", "utilities", "shopping", "productivity"],
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Scan Packet Label",
+      "short_name": "Scan",
+      "description": "Inspect a packaged commodity label",
+      "url": "/?tab=scanner",
+      "icons": [{ "src": "/icon.svg", "sizes": "192x192" }]
+    },
+    {
+      "name": "Hyderabad Violation Map",
+      "short_name": "Map",
+      "description": "View reported retail violations in Hyderabad",
+      "url": "/?tab=map",
+      "icons": [{ "src": "/icon.svg", "sizes": "192x192" }]
+    }
+  ]
+}
