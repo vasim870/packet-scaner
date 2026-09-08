@@ -24,6 +24,7 @@ import {
 } from 'lucide-react';
 import { ProductScanResult, ComplianceViolation } from '../types';
 import { PRESET_SAMPLES } from '../data/presetSamples';
+import { useLanguage } from '../i18n/LanguageContext';
 
 interface ScannerViewProps {
   onScanComplete: (result: ProductScanResult) => void;
@@ -38,6 +39,7 @@ export const ScannerView: React.FC<ScannerViewProps> = ({
   onNavigateToMap,
   onNavigateToDownload
 }) => {
+  const { t } = useLanguage();
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [productHint, setProductHint] = useState('');
   const [categoryHint, setCategoryHint] = useState('Food & Grocery');
@@ -190,10 +192,10 @@ export const ScannerView: React.FC<ScannerViewProps> = ({
             Legal Metrology Enforcement System
           </div>
           <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
-            Verify If Companies Are Cheating on MRP, Weight, Expiry, or Slack Fill
+            {t('scannerTitle')}
           </h2>
           <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-            Upload any product packet label or snap a live photo. Our multimodal compliance engine checks all 8 mandatory declarations under the <span className="text-emerald-300 font-semibold">Legal Metrology (Packaged Commodities) Rules 2011</span>, flags Dual MRP scams, calculates permissible slack-fill ratios, and computes statutory penalties.
+            {t('scannerDesc')}
           </p>
         </div>
       </div>
@@ -203,9 +205,9 @@ export const ScannerView: React.FC<ScannerViewProps> = ({
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <h3 className="text-sm font-bold uppercase tracking-wider text-slate-700">
-              Quick Test Presets (Instant Demo Scenarios)
+              {t('samplePresets')}
             </h3>
-            <span className="text-xs text-slate-500">Click any scenario to test the rule engine:</span>
+            <span className="text-xs text-slate-500">{t('samplePresetsDesc')}</span>
           </div>
         </div>
 
@@ -393,7 +395,7 @@ export const ScannerView: React.FC<ScannerViewProps> = ({
               ) : (
                 <>
                   <Scale className="w-4 h-4" />
-                  <span>Run Legal Metrology Compliance Audit</span>
+                  <span>{t('runAudit')}</span>
                 </>
               )}
             </button>
@@ -405,16 +407,16 @@ export const ScannerView: React.FC<ScannerViewProps> = ({
               <div className="space-y-1">
                 <div className="flex items-center gap-1.5 text-emerald-400 text-xs font-bold">
                   <Smartphone className="w-4 h-4" />
-                  <span>Download Mobile App</span>
+                  <span>{t('quickDownloadTitle')}</span>
                   <span className="bg-emerald-500/20 text-emerald-300 text-[9px] px-1.5 py-0.2 rounded font-mono">
                     v2.6
                   </span>
                 </div>
                 <h4 className="text-sm font-bold text-white">
-                  Scan retail packets directly on your phone
+                  {t('quickDownloadSubtitle')}
                 </h4>
                 <p className="text-[11px] text-slate-300 leading-relaxed">
-                  Use your phone camera for live OCR barcode scanning, dual-MRP verification, and offline violation radar in stores.
+                  {t('quickDownloadDesc')}
                 </p>
               </div>
               <div className="w-10 h-10 rounded-xl bg-emerald-600/30 border border-emerald-500/40 flex items-center justify-center shrink-0">
@@ -430,7 +432,7 @@ export const ScannerView: React.FC<ScannerViewProps> = ({
                 className="flex-1 bg-emerald-500 hover:bg-emerald-400 active:scale-95 text-slate-950 font-bold py-2.5 px-3 rounded-xl text-xs flex items-center justify-center gap-1.5 shadow-xs transition-all cursor-pointer"
               >
                 <Download className="w-3.5 h-3.5" />
-                <span>Download / Install App</span>
+                <span>{t('downloadInstallBtn')}</span>
               </button>
               <button
                 id="btn-scanner-copy-link"
@@ -442,13 +444,13 @@ export const ScannerView: React.FC<ScannerViewProps> = ({
                 className="bg-white/10 hover:bg-white/20 text-white font-semibold py-2.5 px-3 rounded-xl text-xs border border-white/20 transition-all cursor-pointer whitespace-nowrap"
                 title="Copy link to paste in phone browser"
               >
-                Copy Link
+                {t('copyLinkBtn')}
               </button>
             </div>
 
             <div className="flex items-center justify-between text-[10px] text-slate-400 border-t border-emerald-900/60 pt-2.5">
-              <span>Android & iOS Compatible</span>
-              <span className="text-emerald-400 font-medium">Free • No Store Account Needed</span>
+              <span>{t('platformSupport')}</span>
+              <span className="text-emerald-400 font-medium">{t('freeNoAccount')}</span>
             </div>
           </div>
         </div>
@@ -520,7 +522,7 @@ export const ScannerView: React.FC<ScannerViewProps> = ({
                   <div className="bg-white rounded-xl border border-slate-200 p-3 flex items-center gap-3 shrink-0 shadow-2xs">
                     <div className="text-right">
                       <div className="text-[11px] uppercase tracking-wider font-semibold text-slate-500">
-                        Metrology Score
+                        {t('complianceScore')}
                       </div>
                       <div className="text-2xl font-black text-slate-900">
                         {scanResult.complianceScore}
@@ -552,7 +554,7 @@ export const ScannerView: React.FC<ScannerViewProps> = ({
                   <div className="flex flex-wrap items-center gap-4 text-xs pt-1">
                     <div className="bg-white/80 border border-slate-200 px-3 py-1.5 rounded-lg flex items-center gap-1.5 font-medium">
                       <IndianRupee className="w-3.5 h-3.5 text-slate-600" />
-                      <span>Statutory Fine Estimate: </span>
+                      <span>{t('estimatedLiability')}: </span>
                       <span className="font-bold text-rose-700">
                         {scanResult.statutoryFineEstimate}
                       </span>
@@ -574,7 +576,7 @@ export const ScannerView: React.FC<ScannerViewProps> = ({
                   <div className="flex items-center justify-between border-b border-rose-100 pb-3">
                     <h4 className="font-bold text-rose-900 text-sm flex items-center gap-2">
                       <ShieldAlert className="w-4.5 h-4.5 text-rose-600" />
-                      Identified Statutory Violations ({scanResult.violations.length})
+                      {t('violationsDetected')} ({scanResult.violations.length})
                     </h4>
                     <span className="text-xs bg-rose-100 text-rose-800 font-semibold px-2 py-0.5 rounded">
                       Actionable Under Law
@@ -619,7 +621,7 @@ export const ScannerView: React.FC<ScannerViewProps> = ({
                   <div>
                     <h4 className="font-bold text-slate-900 text-sm flex items-center gap-2">
                       <FileCheck className="w-4.5 h-4.5 text-emerald-700" />
-                      Rule 6 Mandatory Declarations Audit
+                      {t('mandatoryDisclosures')}
                     </h4>
                     <p className="text-xs text-slate-500">
                       As mandated under Rule 6 of Legal Metrology (Packaged Commodities) Rules 2011
@@ -777,7 +779,7 @@ export const ScannerView: React.FC<ScannerViewProps> = ({
                   className="flex-1 bg-slate-900 hover:bg-slate-800 text-white font-semibold py-3 px-4 rounded-xl text-sm flex items-center justify-center gap-2 shadow-xs"
                 >
                   <FileCheck className="w-4 h-4" />
-                  <span>Draft Formal Grievance for Metrology Officer</span>
+                  <span>{t('fileNoticeBtn')}</span>
                 </button>
 
                 <button
@@ -787,7 +789,7 @@ export const ScannerView: React.FC<ScannerViewProps> = ({
                   className="bg-emerald-50 hover:bg-emerald-100 text-emerald-900 border border-emerald-300 font-semibold py-3 px-4 rounded-xl text-sm flex items-center justify-center gap-2"
                 >
                   <Building2 className="w-4 h-4 text-emerald-700" />
-                  <span>Pin Violation on All-India Store Map</span>
+                  <span>{t('viewOnRadarBtn')}</span>
                 </button>
               </div>
             </div>

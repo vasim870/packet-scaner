@@ -1,5 +1,6 @@
 import React from 'react';
 import { Scan, MapPin, BookOpen, FileText, BarChart3, Camera, Download } from 'lucide-react';
+import { useLanguage } from '../i18n/LanguageContext';
 
 interface MobileBottomNavProps {
   activeTab: 'scanner' | 'map' | 'rules' | 'grievance' | 'analytics' | 'download';
@@ -12,6 +13,8 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
   setActiveTab,
   onQuickCameraClick
 }) => {
+  const { t } = useLanguage();
+
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-50 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-t border-slate-200 dark:border-slate-800 shadow-lg px-2 py-1 safe-area-pb">
       <div className="max-w-md mx-auto flex items-center justify-around relative">
@@ -31,7 +34,7 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
               <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-emerald-600 dark:bg-emerald-400 rounded-full" />
             )}
           </div>
-          <span className="text-[10px] mt-1 tracking-tight">Scanner</span>
+          <span className="text-[10px] mt-1 tracking-tight">{t('tabScanner')}</span>
         </button>
 
         {/* Tab 2: All India Map */}
@@ -53,7 +56,7 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
               <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-emerald-600 dark:bg-emerald-400 rounded-full" />
             )}
           </div>
-          <span className="text-[10px] mt-1 tracking-tight">India Map</span>
+          <span className="text-[10px] mt-1 tracking-tight">{t('tabMap')}</span>
         </button>
 
         {/* Center Floating Quick Camera Shutter Button */}
@@ -70,7 +73,7 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
             <Camera className="w-6 h-6" />
           </button>
           <span className="text-[9px] font-bold text-emerald-800 dark:text-emerald-300 mt-0.5 tracking-tight">
-            Quick Scan
+            {t('takePhoto')}
           </span>
         </div>
 
@@ -90,7 +93,7 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
               <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-emerald-600 dark:bg-emerald-400 rounded-full" />
             )}
           </div>
-          <span className="text-[10px] mt-1 tracking-tight">Rules</span>
+          <span className="text-[10px] mt-1 tracking-tight">{t('tabRules')}</span>
         </button>
 
         {/* Tab 4: Grievance Notice */}
@@ -109,7 +112,7 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
               <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-emerald-600 dark:bg-emerald-400 rounded-full" />
             )}
           </div>
-          <span className="text-[10px] mt-1 tracking-tight">Notice</span>
+          <span className="text-[10px] mt-1 tracking-tight">{t('tabGrievance')}</span>
         </button>
 
         {/* Tab 5: Analytics */}
@@ -128,7 +131,7 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
               <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-emerald-600 dark:bg-emerald-400 rounded-full" />
             )}
           </div>
-          <span className="text-[10px] mt-1 tracking-tight">Stats</span>
+          <span className="text-[10px] mt-1 tracking-tight">{t('tabAnalytics')}</span>
         </button>
 
         {/* Tab 6: Download App */}
@@ -147,9 +150,10 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
               <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-emerald-600 dark:bg-emerald-400 rounded-full" />
             )}
           </div>
-          <span className="text-[10px] mt-1 tracking-tight text-emerald-700 dark:text-emerald-400 font-bold">Install</span>
+          <span className="text-[10px] mt-1 tracking-tight text-emerald-700 dark:text-emerald-400 font-bold">{t('tabDownload')}</span>
         </button>
       </div>
     </nav>
   );
 };
+

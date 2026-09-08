@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Scale, Download, Share2, Smartphone, Monitor, ShieldCheck, Wifi, Battery, Sun, Moon } from 'lucide-react';
 import { usePWAInstall } from '../hooks/usePWAInstall';
 import { useTheme } from '../hooks/useTheme';
+import { useLanguage } from '../i18n/LanguageContext';
+import { LanguageSelector } from './LanguageSelector';
 
 interface MobileAppHeaderProps {
   isSimulator?: boolean;
@@ -16,6 +18,7 @@ export const MobileAppHeader: React.FC<MobileAppHeaderProps> = ({
 }) => {
   const { isInstallable, isInstalled } = usePWAInstall();
   const { isDark, toggleTheme } = useTheme();
+  const { t } = useLanguage();
   const [currentTime, setCurrentTime] = useState('09:41');
 
   useEffect(() => {
@@ -54,7 +57,7 @@ export const MobileAppHeader: React.FC<MobileAppHeaderProps> = ({
           <div>
             <div className="flex items-center gap-1.5">
               <span className="font-black text-sm tracking-tight text-white">
-                Packet Scanner
+                {t('appTitle')}
               </span>
               <span className="bg-emerald-500/20 text-emerald-300 text-[9px] font-bold px-1.5 py-0.2 rounded font-mono">
                 Official
@@ -67,6 +70,9 @@ export const MobileAppHeader: React.FC<MobileAppHeaderProps> = ({
         </div>
 
         <div className="flex items-center gap-1.5">
+          {/* Language Selector */}
+          <LanguageSelector variant="compact" id="mobile-app-header-lang" />
+
           {/* Theme Toggle Button */}
           <button
             id="mobile-header-theme-toggle"
@@ -90,7 +96,7 @@ export const MobileAppHeader: React.FC<MobileAppHeaderProps> = ({
               className="bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white text-[11px] font-bold px-2.5 py-1.5 rounded-lg flex items-center gap-1 transition-all shadow-xs cursor-pointer"
             >
               <Download className="w-3.5 h-3.5" />
-              <span>Get App</span>
+              <span>{t('downloadApp')}</span>
             </button>
           )}
 

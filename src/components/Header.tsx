@@ -2,6 +2,8 @@ import React from 'react';
 import { ShieldAlert, Scale, MapPin, FileText, BarChart3, Scan, CheckCircle2, AlertTriangle, Smartphone, Download, Sun, Moon } from 'lucide-react';
 import { usePWAInstall } from '../hooks/usePWAInstall';
 import { useTheme } from '../hooks/useTheme';
+import { useLanguage } from '../i18n/LanguageContext';
+import { LanguageSelector } from './LanguageSelector';
 
 interface HeaderProps {
   activeTab: 'scanner' | 'map' | 'rules' | 'grievance' | 'analytics' | 'download';
@@ -26,6 +28,7 @@ export const Header: React.FC<HeaderProps> = ({
 }) => {
   const { isInstalled } = usePWAInstall();
   const { isDark, toggleTheme } = useTheme();
+  const { t } = useLanguage();
 
   return (
     <header className="border-b border-slate-200 bg-white sticky top-0 z-40 shadow-xs">
@@ -35,13 +38,16 @@ export const Header: React.FC<HeaderProps> = ({
           <div className="flex items-center gap-2">
             <span className="inline-block w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
             <span className="font-medium tracking-wide">
-              Ministry of Consumer Affairs, Food & Public Distribution | Government of India
+              {t('ministryTitle')}
             </span>
           </div>
           <div className="flex items-center gap-2.5 text-slate-300">
             <span className="hidden sm:inline-block bg-slate-800 text-amber-300 px-2 py-0.5 rounded font-mono text-[11px] font-semibold">
-              Legal Metrology (Packaged Commodities) Rules 2011
+              {t('metrologyRulesTag')}
             </span>
+
+            {/* Language Selector in Utility Bar */}
+            <LanguageSelector variant="pill" id="top-bar-lang" />
 
             {/* Dark / Light Mode Toggle Button in Utility Bar */}
             <button
@@ -54,12 +60,12 @@ export const Header: React.FC<HeaderProps> = ({
               {isDark ? (
                 <>
                   <Sun className="w-3.5 h-3.5 text-amber-400 fill-amber-400/20" />
-                  <span>Light</span>
+                  <span>{t('themeLight')}</span>
                 </>
               ) : (
                 <>
                   <Moon className="w-3.5 h-3.5 text-slate-300 fill-slate-300/20" />
-                  <span>Dark</span>
+                  <span>{t('themeDark')}</span>
                 </>
               )}
             </button>
@@ -76,7 +82,7 @@ export const Header: React.FC<HeaderProps> = ({
                 }`}
               >
                 <Smartphone className="w-3.5 h-3.5" />
-                <span>{isMobileSimulator ? 'Exit Phone Mode' : '📱 Mobile App View'}</span>
+                <span>{isMobileSimulator ? t('exitPhoneMode') : t('mobileAppView')}</span>
               </button>
             )}
 
@@ -89,7 +95,7 @@ export const Header: React.FC<HeaderProps> = ({
                 title="Download Packet Scanner on Android or iPhone"
               >
                 <Download className="w-3.5 h-3.5" />
-                <span>Download App</span>
+                <span>{t('downloadApp')}</span>
               </button>
             )}
 
@@ -97,12 +103,12 @@ export const Header: React.FC<HeaderProps> = ({
               {serverStatus.connected ? (
                 <span className="flex items-center gap-1 text-emerald-400">
                   <CheckCircle2 className="w-3.5 h-3.5" />
-                  <span className="hidden sm:inline">Backend Active</span>
+                  <span className="hidden sm:inline">{t('backendActive')}</span>
                 </span>
               ) : (
                 <span className="flex items-center gap-1 text-amber-400">
                   <AlertTriangle className="w-3.5 h-3.5" />
-                  <span className="hidden sm:inline">Connecting...</span>
+                  <span className="hidden sm:inline">{t('connecting')}</span>
                 </span>
               )}
             </span>
@@ -120,20 +126,21 @@ export const Header: React.FC<HeaderProps> = ({
             <div>
               <div className="flex items-center gap-2">
                 <h1 className="text-xl font-bold text-slate-900 tracking-tight">
-                  Packet Scanner
+                  {t('appTitle')}
                 </h1>
                 <span className="bg-emerald-100 text-emerald-800 text-[11px] font-semibold px-2 py-0.5 rounded-full">
-                  v2.6
+                  {t('version')}
                 </span>
               </div>
-              <p className="text-xs text-slate-500 font-medium">
-                Legal Metrology Compliance, dual MRP overcharging detection & Pan-India violation mapping
+              <p className="text-xs text-slate-500 font-medium max-w-xl">
+                {t('appSubtitle')}
               </p>
             </div>
           </div>
 
-          {/* Quick theme toggle on mobile devices */}
+          {/* Quick theme toggle & language on mobile devices */}
           <div className="flex items-center gap-2 md:hidden">
+            <LanguageSelector variant="compact" id="mobile-lang-top" />
             <button
               id="btn-theme-toggle-mobile"
               onClick={toggleTheme}
@@ -150,7 +157,7 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
         </div>
 
-        {/* Navigation Tabs & Theme Toggle */}
+        {/* Navigation Tabs & Language / Theme Toggle */}
         <div className="flex items-center gap-2 overflow-x-auto pb-1 md:pb-0 scrollbar-none">
           <nav className="flex items-center gap-1">
             <button
@@ -163,7 +170,7 @@ export const Header: React.FC<HeaderProps> = ({
               }`}
             >
               <Scan className="w-4 h-4" />
-              <span>Packet Scanner</span>
+              <span>{t('tabScanner')}</span>
             </button>
 
             <button
@@ -176,9 +183,9 @@ export const Header: React.FC<HeaderProps> = ({
               }`}
             >
               <MapPin className="w-4 h-4" />
-              <span>All India Violation Map</span>
+              <span>{t('tabMap')}</span>
               <span className="bg-emerald-600 text-white text-[10px] font-bold px-1.5 py-0.2 rounded-full">
-                Live
+                {t('liveBadge')}
               </span>
             </button>
 
@@ -192,7 +199,7 @@ export const Header: React.FC<HeaderProps> = ({
               }`}
             >
               <Scale className="w-4 h-4" />
-              <span>Rules & Penalties</span>
+              <span>{t('tabRules')}</span>
             </button>
 
             <button
@@ -205,7 +212,7 @@ export const Header: React.FC<HeaderProps> = ({
               }`}
             >
               <FileText className="w-4 h-4" />
-              <span>Lodge Grievance</span>
+              <span>{t('tabGrievance')}</span>
             </button>
 
             <button
@@ -218,7 +225,7 @@ export const Header: React.FC<HeaderProps> = ({
               }`}
             >
               <BarChart3 className="w-4 h-4" />
-              <span>Enforcement Stats</span>
+              <span>{t('tabAnalytics')}</span>
             </button>
 
             <button
@@ -231,12 +238,15 @@ export const Header: React.FC<HeaderProps> = ({
               }`}
             >
               <Smartphone className="w-4 h-4 text-emerald-600" />
-              <span>Download Mobile App</span>
+              <span>{t('tabDownload')}</span>
               <span className="bg-emerald-600 text-white text-[10px] font-extrabold px-1.5 py-0.2 rounded-full">
-                APK / PWA
+                {t('apkPwaBadge')}
               </span>
             </button>
           </nav>
+
+          {/* Desktop Language Selector */}
+          <LanguageSelector variant="full" id="main-nav-lang" className="hidden md:inline-block" />
 
           {/* Prominent Theme Toggle in Main Header */}
           <button
@@ -253,12 +263,12 @@ export const Header: React.FC<HeaderProps> = ({
             {isDark ? (
               <>
                 <Sun className="w-4 h-4 text-amber-400 fill-amber-400/20" />
-                <span>Light</span>
+                <span>{t('themeLight')}</span>
               </>
             ) : (
               <>
                 <Moon className="w-4 h-4 text-slate-700 fill-slate-700/20" />
-                <span>Dark</span>
+                <span>{t('themeDark')}</span>
               </>
             )}
           </button>
