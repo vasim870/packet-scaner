@@ -52,7 +52,7 @@ export const MobileAppHeader: React.FC<MobileAppHeaderProps> = ({
           <div>
             <div className="flex items-center gap-1.5">
               <span className="font-black text-sm tracking-tight text-white">
-                PCCS Mobile
+                Packet Scanner
               </span>
               <span className="bg-emerald-500/20 text-emerald-300 text-[9px] font-bold px-1.5 py-0.2 rounded font-mono">
                 Official

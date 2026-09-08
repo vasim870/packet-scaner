@@ -1,16 +1,12 @@
 import express from "express";
 import path from "path";
-import { fileURLToPath } from "url";
 import { createServer as createViteServer } from "vite";
 import { GoogleGenAI } from "@google/genai";
 import dotenv from "dotenv";
 
 dotenv.config();
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-// In-memory violation database seeded with authentic Hyderabad retail violations
+// In-memory violation database seeded with authentic retail violations
 let storeViolations = [
   // NORTH ZONE
   {

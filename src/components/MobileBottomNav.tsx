@@ -1,9 +1,9 @@
 import React from 'react';
-import { Scan, MapPin, BookOpen, FileText, BarChart3, Camera } from 'lucide-react';
+import { Scan, MapPin, BookOpen, FileText, BarChart3, Camera, Download } from 'lucide-react';
 
 interface MobileBottomNavProps {
-  activeTab: 'scanner' | 'map' | 'rules' | 'grievance' | 'analytics';
-  setActiveTab: (tab: 'scanner' | 'map' | 'rules' | 'grievance' | 'analytics') => void;
+  activeTab: 'scanner' | 'map' | 'rules' | 'grievance' | 'analytics' | 'download';
+  setActiveTab: (tab: 'scanner' | 'map' | 'rules' | 'grievance' | 'analytics' | 'download') => void;
   onQuickCameraClick?: () => void;
 }
 
@@ -129,6 +129,25 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
             )}
           </div>
           <span className="text-[10px] mt-1 tracking-tight">Stats</span>
+        </button>
+
+        {/* Tab 6: Download App */}
+        <button
+          id="mobile-nav-download"
+          onClick={() => setActiveTab('download')}
+          className={`flex flex-col items-center justify-center py-1.5 px-2 rounded-xl transition-all ${
+            activeTab === 'download'
+              ? 'text-emerald-700 font-bold'
+              : 'text-emerald-800 font-semibold'
+          }`}
+        >
+          <div className="relative">
+            <Download className="w-5 h-5 text-emerald-700" />
+            {activeTab === 'download' && (
+              <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-emerald-600 rounded-full" />
+            )}
+          </div>
+          <span className="text-[10px] mt-1 tracking-tight text-emerald-700 font-bold">Install</span>
         </button>
       </div>
     </nav>

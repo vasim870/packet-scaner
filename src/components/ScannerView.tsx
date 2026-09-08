@@ -17,7 +17,10 @@ import {
   Info,
   ExternalLink,
   ChevronRight,
-  Eye
+  Eye,
+  Smartphone,
+  Download,
+  QrCode
 } from 'lucide-react';
 import { ProductScanResult, ComplianceViolation } from '../types';
 import { PRESET_SAMPLES } from '../data/presetSamples';
@@ -26,12 +29,14 @@ interface ScannerViewProps {
   onScanComplete: (result: ProductScanResult) => void;
   onNavigateToGrievance: (result: ProductScanResult) => void;
   onNavigateToMap: (result: ProductScanResult) => void;
+  onNavigateToDownload?: () => void;
 }
 
 export const ScannerView: React.FC<ScannerViewProps> = ({
   onScanComplete,
   onNavigateToGrievance,
-  onNavigateToMap
+  onNavigateToMap,
+  onNavigateToDownload
 }) => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [productHint, setProductHint] = useState('');
@@ -365,58 +370,6 @@ export const ScannerView: React.FC<ScannerViewProps> = ({
               onChange={handleFileChange}
             />
 
-            {/* Optional Metadata Context Inputs */}
-            <div className="space-y-3 pt-2">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div>
-                  <label className="block text-xs font-semibold text-slate-700 mb-1">
-                    Commodity / Product Name (Optional)
-                  </label>
-                  <input
-                    id="input-product-hint"
-                    type="text"
-                    value={productHint}
-                    onChange={e => setProductHint(e.target.value)}
-                    placeholder="e.g. Potato Chips, Cola 330ml"
-                    className="w-full text-xs px-3 py-2 border border-slate-300 rounded-lg focus:outline-hidden focus:ring-2 focus:ring-emerald-500 focus:border-transparent bg-white"
-                  />
-                </div>
-                <div>
-                  <label className="block text-xs font-semibold text-slate-700 mb-1">
-                    Category
-                  </label>
-                  <select
-                    id="select-category-hint"
-                    value={categoryHint}
-                    onChange={e => setCategoryHint(e.target.value)}
-                    className="w-full text-xs px-3 py-2 border border-slate-300 rounded-lg focus:outline-hidden focus:ring-2 focus:ring-emerald-500 focus:border-transparent bg-white"
-                  >
-                    <option value="Food & Grocery">Food & Grocery</option>
-                    <option value="Beverages">Beverages & Cold Drinks</option>
-                    <option value="Snacks & Confectionery">Snacks & Confectionery</option>
-                    <option value="Edible Oils">Edible Oils & Ghee</option>
-                    <option value="Personal Care & Cosmetics">Personal Care & Cosmetics</option>
-                    <option value="Electronics & Hardware">Electronics & Hardware</option>
-                    <option value="Imported Packaged Goods">Imported Packaged Goods</option>
-                  </select>
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-xs font-semibold text-slate-700 mb-1">
-                  Retail Store / Buying Location (Optional)
-                </label>
-                <input
-                  id="input-store-context"
-                  type="text"
-                  value={storeContext}
-                  onChange={e => setStoreContext(e.target.value)}
-                  placeholder="e.g. PVR Delhi, CSMT Stalls Mumbai, Kempegowda Bengaluru, Banjara Hills"
-                  className="w-full text-xs px-3 py-2 border border-slate-300 rounded-lg focus:outline-hidden focus:ring-2 focus:ring-emerald-500 focus:border-transparent bg-white"
-                />
-              </div>
-            </div>
-
             {errorMsg && (
               <div className="p-3 bg-rose-50 border border-rose-200 rounded-lg text-rose-800 text-xs flex items-start gap-2">
                 <AlertOctagon className="w-4 h-4 shrink-0 mt-0.5" />
@@ -444,6 +397,59 @@ export const ScannerView: React.FC<ScannerViewProps> = ({
                 </>
               )}
             </button>
+          </div>
+
+          {/* Quick Mobile App Download Card */}
+          <div className="bg-gradient-to-br from-slate-900 via-slate-900 to-emerald-950 text-white rounded-2xl p-5 border border-emerald-800/40 shadow-xs space-y-3.5">
+            <div className="flex items-start justify-between gap-3">
+              <div className="space-y-1">
+                <div className="flex items-center gap-1.5 text-emerald-400 text-xs font-bold">
+                  <Smartphone className="w-4 h-4" />
+                  <span>Download Mobile App</span>
+                  <span className="bg-emerald-500/20 text-emerald-300 text-[9px] px-1.5 py-0.2 rounded font-mono">
+                    v2.6
+                  </span>
+                </div>
+                <h4 className="text-sm font-bold text-white">
+                  Scan retail packets directly on your phone
+                </h4>
+                <p className="text-[11px] text-slate-300 leading-relaxed">
+                  Use your phone camera for live OCR barcode scanning, dual-MRP verification, and offline violation radar in stores.
+                </p>
+              </div>
+              <div className="w-10 h-10 rounded-xl bg-emerald-600/30 border border-emerald-500/40 flex items-center justify-center shrink-0">
+                <Download className="w-5 h-5 text-emerald-300" />
+              </div>
+            </div>
+
+            <div className="pt-1 flex items-center gap-2">
+              <button
+                id="btn-scanner-open-download-page"
+                type="button"
+                onClick={() => onNavigateToDownload && onNavigateToDownload()}
+                className="flex-1 bg-emerald-500 hover:bg-emerald-400 active:scale-95 text-slate-950 font-bold py-2.5 px-3 rounded-xl text-xs flex items-center justify-center gap-1.5 shadow-xs transition-all cursor-pointer"
+              >
+                <Download className="w-3.5 h-3.5" />
+                <span>Download / Install App</span>
+              </button>
+              <button
+                id="btn-scanner-copy-link"
+                type="button"
+                onClick={() => {
+                  navigator.clipboard.writeText(window.location.origin || window.location.href);
+                  alert('Mobile link copied! Paste it in Google Chrome on your phone to install.');
+                }}
+                className="bg-white/10 hover:bg-white/20 text-white font-semibold py-2.5 px-3 rounded-xl text-xs border border-white/20 transition-all cursor-pointer whitespace-nowrap"
+                title="Copy link to paste in phone browser"
+              >
+                Copy Link
+              </button>
+            </div>
+
+            <div className="flex items-center justify-between text-[10px] text-slate-400 border-t border-emerald-900/60 pt-2.5">
+              <span>Android & iOS Compatible</span>
+              <span className="text-emerald-400 font-medium">Free • No Store Account Needed</span>
+            </div>
           </div>
         </div>
 

@@ -19,15 +19,19 @@ import { IndiaViolationMap } from './components/IndiaViolationMap';
 import { RulesAndPenaltyGuide } from './components/RulesAndPenaltyGuide';
 import { GrievanceForm } from './components/GrievanceForm';
 import { AnalyticsDashboard } from './components/AnalyticsDashboard';
+import { MobileDownloadView } from './components/MobileDownloadView';
 import { ProductScanResult, StoreViolationReport } from './types';
-import { Scale, Phone, ExternalLink, ShieldCheck, Smartphone } from 'lucide-react';
+import { Scale, Phone, ExternalLink, ShieldCheck, Smartphone, Download, X } from 'lucide-react';
+import { usePWAInstall } from './hooks/usePWAInstall';
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState<'scanner' | 'map' | 'rules' | 'grievance' | 'analytics'>('scanner');
+  const [activeTab, setActiveTab] = useState<'scanner' | 'map' | 'rules' | 'grievance' | 'analytics' | 'download'>('scanner');
   const [latestScan, setLatestScan] = useState<ProductScanResult | null>(null);
   const [selectedStoreForNotice, setSelectedStoreForNotice] = useState<StoreViolationReport | null>(null);
   const [isMobileSimulator, setIsMobileSimulator] = useState(false);
   const [isInstallModalOpen, setIsInstallModalOpen] = useState(false);
+  const [showMobileBanner, setShowMobileBanner] = useState(true);
+  const { isInstalled } = usePWAInstall();
 
   const [serverStatus, setServerStatus] = useState<{
     connected: boolean;
@@ -100,6 +104,7 @@ export default function App() {
           onScanComplete={handleScanComplete}
           onNavigateToGrievance={handleNavigateToGrievance}
           onNavigateToMap={handleNavigateToMap}
+          onNavigateToDownload={() => setActiveTab('download')}
         />
       )}
 
@@ -120,6 +125,10 @@ export default function App() {
       )}
 
       {activeTab === 'analytics' && <AnalyticsDashboard />}
+
+      {activeTab === 'download' && (
+        <MobileDownloadView onOpenScanner={() => setActiveTab('scanner')} />
+      )}
     </>
   );
 
@@ -163,6 +172,45 @@ export default function App() {
         onOpenInstallModal={() => setIsInstallModalOpen(true)}
       />
 
+      {/* Mobile Download/Install Notification Banner */}
+      {!isInstalled && showMobileBanner && (
+        <div className="bg-gradient-to-r from-emerald-900 via-emerald-800 to-teal-900 text-white px-4 py-2.5 flex items-center justify-between border-b border-emerald-700/50 shadow-xs">
+          <div className="flex items-center gap-2.5">
+            <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center shrink-0">
+              <Download className="w-4 h-4 text-emerald-300" />
+            </div>
+            <div>
+              <p className="text-xs font-bold leading-tight flex items-center gap-1.5">
+                <span>Download Packet Scanner App</span>
+                <span className="bg-emerald-400 text-slate-950 text-[9px] font-extrabold px-1.5 py-0.2 rounded-full">
+                  Android & iOS
+                </span>
+              </p>
+              <p className="text-[11px] text-emerald-200">
+                Install on your phone home screen for instant camera barcode scans
+              </p>
+            </div>
+          </div>
+          <div className="flex items-center gap-2 shrink-0">
+            <button
+              id="btn-banner-download-app"
+              onClick={() => setIsInstallModalOpen(true)}
+              className="bg-white hover:bg-emerald-50 active:scale-95 text-emerald-900 font-bold px-3 py-1.5 rounded-lg text-xs shadow-xs transition-all cursor-pointer whitespace-nowrap"
+            >
+              Install App
+            </button>
+            <button
+              id="btn-banner-close"
+              onClick={() => setShowMobileBanner(false)}
+              className="p-1 rounded-md text-emerald-300 hover:text-white hover:bg-white/10 transition-colors"
+              title="Dismiss"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* Main Tab Content */}
       <main className="flex-1 pb-6">
         {renderMainContent()}
@@ -202,6 +250,14 @@ export default function App() {
             </div>
 
             <div className="flex items-center gap-4 text-[11px]">
+              <button
+                id="btn-footer-download-app"
+                onClick={() => setActiveTab('download')}
+                className="flex items-center gap-1.5 bg-emerald-600 hover:bg-emerald-500 text-white px-3 py-1.5 rounded-lg font-bold shadow-xs transition-colors"
+              >
+                <Download className="w-3.5 h-3.5" />
+                <span>Download Mobile App</span>
+              </button>
               <button
                 onClick={() => setIsMobileSimulator(true)}
                 className="flex items-center gap-1.5 bg-slate-800 hover:bg-slate-700 text-emerald-400 px-3 py-1.5 rounded-lg border border-slate-700 transition-colors font-medium"
