@@ -4,6 +4,7 @@ import { usePWAInstall } from '../hooks/usePWAInstall';
 import { useTheme } from '../hooks/useTheme';
 import { useLanguage } from '../i18n/LanguageContext';
 import { LanguageSelector } from './LanguageSelector';
+import { AppLogo } from './AppLogo';
 
 interface HeaderProps {
   activeTab: 'scanner' | 'map' | 'rules' | 'grievance' | 'analytics' | 'download';
@@ -120,9 +121,7 @@ export const Header: React.FC<HeaderProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
         <div className="flex items-center justify-between w-full md:w-auto">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-emerald-700 text-white flex items-center justify-center shadow-xs font-bold text-lg shrink-0">
-              <Scale className="w-6 h-6" />
-            </div>
+            <AppLogo size="md" rounded="xl" />
             <div>
               <div className="flex items-center gap-2">
                 <h1 className="text-xl font-bold text-slate-900 tracking-tight">

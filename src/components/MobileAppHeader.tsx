@@ -4,6 +4,7 @@ import { usePWAInstall } from '../hooks/usePWAInstall';
 import { useTheme } from '../hooks/useTheme';
 import { useLanguage } from '../i18n/LanguageContext';
 import { LanguageSelector } from './LanguageSelector';
+import { AppLogo } from './AppLogo';
 
 interface MobileAppHeaderProps {
   isSimulator?: boolean;
@@ -51,9 +52,7 @@ export const MobileAppHeader: React.FC<MobileAppHeaderProps> = ({
       {/* Main Mobile App Action Bar */}
       <div className="px-4 py-2.5 flex items-center justify-between">
         <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-emerald-800 to-teal-500 text-white flex items-center justify-center font-black shadow-xs">
-            <Scale className="w-4.5 h-4.5" />
-          </div>
+          <AppLogo size="sm" rounded="lg" />
           <div>
             <div className="flex items-center gap-1.5">
               <span className="font-black text-sm tracking-tight text-white">

@@ -20,6 +20,7 @@ import { RulesAndPenaltyGuide } from './components/RulesAndPenaltyGuide';
 import { GrievanceForm } from './components/GrievanceForm';
 import { AnalyticsDashboard } from './components/AnalyticsDashboard';
 import { MobileDownloadView } from './components/MobileDownloadView';
+import { AppLogo } from './components/AppLogo';
 import { ProductScanResult, StoreViolationReport } from './types';
 import { Scale, Phone, ExternalLink, ShieldCheck, Smartphone, Download, X } from 'lucide-react';
 import { usePWAInstall } from './hooks/usePWAInstall';
@@ -239,9 +240,7 @@ export default function App() {
         <div className="max-w-7xl mx-auto space-y-6">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-800 pb-6">
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-lg bg-emerald-800 text-white flex items-center justify-center font-bold">
-                <Scale className="w-5 h-5" />
-              </div>
+              <AppLogo size="sm" rounded="lg" />
               <div>
                 <p className="font-bold text-white text-sm">
                   Department of Consumer Affairs • Legal Metrology Division

@@ -19,6 +19,7 @@ import {
 import { QRCodeSVG } from 'qrcode.react';
 import { usePWAInstall } from '../hooks/usePWAInstall';
 import { useLanguage } from '../i18n/LanguageContext';
+import { AppLogo } from './AppLogo';
 
 interface MobileDownloadViewProps {
   onOpenScanner?: () => void;
@@ -91,9 +92,12 @@ export const MobileDownloadView: React.FC<MobileDownloadViewProps> = ({ onOpenSc
         
         <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           <div className="lg:col-span-7 space-y-4">
-            <div className="inline-flex items-center gap-2 bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 px-3 py-1 rounded-full text-xs font-semibold">
-              <Smartphone className="w-3.5 h-3.5" />
-              <span>Official Mobile Application • Version 2.6</span>
+            <div className="flex items-center gap-3">
+              <AppLogo size="lg" rounded="2xl" />
+              <div className="inline-flex items-center gap-2 bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 px-3 py-1 rounded-full text-xs font-semibold">
+                <Smartphone className="w-3.5 h-3.5" />
+                <span>Official Mobile Application • Version 2.6</span>
+              </div>
             </div>
 
             <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-white leading-tight">

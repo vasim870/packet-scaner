@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 import { usePWAInstall } from '../hooks/usePWAInstall';
 import { useLanguage } from '../i18n/LanguageContext';
+import { AppLogo } from './AppLogo';
 
 interface PWAInstallModalProps {
   isOpen: boolean;
@@ -60,9 +61,7 @@ export const PWAInstallModal: React.FC<PWAInstallModalProps> = ({ isOpen, onClos
           </button>
 
           <div className="flex items-center gap-3">
-            <div className="w-12 h-12 rounded-2xl bg-emerald-600 p-1 flex items-center justify-center shadow-md">
-              <img src="/pwa-192x192.png" alt="Packet Scanner App Icon" className="w-10 h-10 rounded-xl" />
-            </div>
+            <AppLogo size="lg" rounded="2xl" />
             <div>
               <h3 className="font-bold text-base text-white">
                 {t('downloadApp')}
