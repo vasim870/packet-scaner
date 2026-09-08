@@ -15,6 +15,7 @@ import {
   Check
 } from 'lucide-react';
 import { usePWAInstall } from '../hooks/usePWAInstall';
+import { useLanguage } from '../i18n/LanguageContext';
 
 interface PWAInstallModalProps {
   isOpen: boolean;
@@ -23,6 +24,7 @@ interface PWAInstallModalProps {
 
 export const PWAInstallModal: React.FC<PWAInstallModalProps> = ({ isOpen, onClose }) => {
   const { isInstallable, isInstalled, isIOS, install } = usePWAInstall();
+  const { t } = useLanguage();
   const [copied, setCopied] = useState(false);
 
   if (!isOpen) return null;
@@ -63,7 +65,7 @@ export const PWAInstallModal: React.FC<PWAInstallModalProps> = ({ isOpen, onClos
             </div>
             <div>
               <h3 className="font-bold text-base text-white">
-                Download Packet Scanner
+                {t('downloadApp')}
               </h3>
               <p className="text-xs text-emerald-300">
                 Official Consumer Legal Metrology Mobile App
@@ -114,7 +116,7 @@ export const PWAInstallModal: React.FC<PWAInstallModalProps> = ({ isOpen, onClos
                 className="w-full bg-emerald-700 hover:bg-emerald-800 active:scale-98 text-white font-bold py-3 px-4 rounded-xl text-xs flex items-center justify-center gap-2 shadow-md transition-all cursor-pointer"
               >
                 <Download className="w-4 h-4" />
-                <span>Download / Install Packet Scanner App</span>
+                <span>{t('downloadInstallBtn')}</span>
               </button>
             </div>
           ) : (

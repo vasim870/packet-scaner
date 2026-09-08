@@ -18,6 +18,7 @@ import {
 } from 'lucide-react';
 import { QRCodeSVG } from 'qrcode.react';
 import { usePWAInstall } from '../hooks/usePWAInstall';
+import { useLanguage } from '../i18n/LanguageContext';
 
 interface MobileDownloadViewProps {
   onOpenScanner?: () => void;
@@ -25,6 +26,7 @@ interface MobileDownloadViewProps {
 
 export const MobileDownloadView: React.FC<MobileDownloadViewProps> = ({ onOpenScanner }) => {
   const { isInstallable, isInstalled, isIOS, install } = usePWAInstall();
+  const { t } = useLanguage();
   const [copied, setCopied] = useState(false);
   const [selectedOS, setSelectedOS] = useState<'android' | 'ios'>(isIOS ? 'ios' : 'android');
   const [installTriggered, setInstallTriggered] = useState(false);
@@ -110,7 +112,7 @@ export const MobileDownloadView: React.FC<MobileDownloadViewProps> = ({ onOpenSc
                 className="bg-emerald-500 hover:bg-emerald-400 active:scale-95 text-slate-950 font-bold px-6 py-3 rounded-xl text-sm flex items-center gap-2 shadow-lg shadow-emerald-500/25 transition-all cursor-pointer"
               >
                 <Download className="w-4 h-4" />
-                <span>{isInstalled ? 'App Already Installed' : 'Install on Mobile Now'}</span>
+                <span>{isInstalled ? 'App Already Installed' : t('downloadInstallBtn')}</span>
               </button>
 
               <button
@@ -121,12 +123,12 @@ export const MobileDownloadView: React.FC<MobileDownloadViewProps> = ({ onOpenSc
                 {copied ? (
                   <>
                     <Check className="w-4 h-4 text-emerald-400" />
-                    <span className="text-emerald-300">Link Copied!</span>
+                    <span className="text-emerald-300">{t('linkCopiedAlert')}</span>
                   </>
                 ) : (
                   <>
                     <Copy className="w-4 h-4" />
-                    <span>Copy Phone Link</span>
+                    <span>{t('copyLinkBtn')}</span>
                   </>
                 )}
               </button>

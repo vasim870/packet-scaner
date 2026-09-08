@@ -73,7 +73,38 @@ export const translations: Record<Language, Record<string, string>> = {
     filter: 'Filter',
     close: 'Close',
     back: 'Back',
-    submit: 'Submit'
+    submit: 'Submit',
+
+    // Map View
+    mapSearchPlaceholder: 'Search stores, markets, brands, or cities...',
+    reportViolationBtn: 'Report Store Violation',
+    allZones: 'All India',
+    allCities: 'All Cities',
+    verifiedReports: 'Verified Violations',
+
+    // Grievance Notice
+    grievanceHeader: 'Statutory Legal Demand Notice Generator',
+    grievanceSubtitle: 'Draft an enforceable legal demand notice under Section 36 of the Legal Metrology Act, 2009 for overcharging or missing declarations.',
+    petitionerDetails: 'Petitioner / Complainant Details',
+    storeDetails: 'Defaulting Merchant / Retailer Details',
+    productDetails: 'Packet Information & MRP Evidence',
+    generateNoticeBtn: 'Generate Enforceable Legal Demand Notice',
+    copyNoticeBtn: 'Copy Notice to Clipboard',
+    printNoticeBtn: 'Print / Export Notice',
+
+    // Rules
+    rulesTitle: 'Legal Metrology Rules & Statutory Penalty Compendium',
+    rulesSubtitle: 'Know your rights under the Legal Metrology Act 2009 & Packaged Commodities Rules 2011.',
+    rulesTabRules: 'Packaged Commodity Rules',
+    rulesTabCalc: 'Statutory Penalty Calculator',
+    rulesTabTolerances: 'Permissible Weight Tolerances',
+
+    // Analytics
+    analyticsTitle: 'Pan-India Enforcement Intelligence Dashboard',
+    totalScans: 'Packets Audited',
+    totalReports: 'Active Store Reports',
+    penaltiesLevied: 'Penalties Levied (Est.)',
+    hotspotsTitle: 'High-Risk Overcharging Corridors'
   },
   hi: {
     // Top Bar
@@ -147,7 +178,38 @@ export const translations: Record<Language, Record<string, string>> = {
     filter: 'फ़िल्टर',
     close: 'बंद करें',
     back: 'वापस',
-    submit: 'जमा करें'
+    submit: 'जमा करें',
+
+    // Map View
+    mapSearchPlaceholder: 'दुकान, बाज़ार, ब्रांड या शहर खोजें...',
+    reportViolationBtn: 'दुकान उल्लंघन रिपोर्ट करें',
+    allZones: 'संपूर्ण भारत',
+    allCities: 'सभी शहर',
+    verifiedReports: 'सत्यापित उल्लंघन',
+
+    // Grievance Notice
+    grievanceHeader: 'विधिक नोटिस जेनरेटर (धारा 36 विधिक मापविज्ञान अधिनियम)',
+    grievanceSubtitle: 'एमआरपी से अधिक वसूली या अनिवार्य विवरणों के अभाव में विधिक मापविज्ञान अधिकारी एवं व्यापारी के लिए औपचारिक नोटिस तैयार करें।',
+    petitionerDetails: 'शिकायतकर्ता / उपभोक्ता विवरण',
+    storeDetails: 'दोषी व्यापारी / दुकान विवरण',
+    productDetails: 'खरीदी गई वस्तु एवं एमआरपी साक्ष्य',
+    generateNoticeBtn: 'औपचारिक विधिक मांग नोटिस तैयार करें',
+    copyNoticeBtn: 'नोटिस क्लिपबोर्ड पर कॉपी करें',
+    printNoticeBtn: 'नोटिस प्रिंट / निर्यात करें',
+
+    // Rules
+    rulesTitle: 'विधिक मापविज्ञान नियम एवं दंड संग्रह',
+    rulesSubtitle: 'विधिक मापविज्ञान अधिनियम 2009 एवं डिब्बाबंद वस्तुएं नियम 2011 के अंतर्गत अपने उपभोक्ता अधिकारों को जानें।',
+    rulesTabRules: 'डिब्बाबंद वस्तुएं नियम',
+    rulesTabCalc: 'दंड कैलकुलेटर',
+    rulesTabTolerances: 'स्वीकार्य वजन सहिष्णुता सीमा',
+
+    // Analytics
+    analyticsTitle: 'अखिल भारतीय प्रवर्तन एवं उल्लंघन डैशबोर्ड',
+    totalScans: 'कुल पैकेट ऑडिट',
+    totalReports: 'सक्रिय दुकान शिकायतें',
+    penaltiesLevied: 'अनुमानित कुल दंड',
+    hotspotsTitle: 'उच्च जोखिम उल्लंघन क्षेत्र'
   },
   ta: {
     // Top Bar

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Smartphone, Monitor, RotateCcw, Volume2, Wifi, Battery, Sparkles } from 'lucide-react';
+import { useLanguage } from '../i18n/LanguageContext';
 
 interface MobileDeviceSimulatorProps {
   children: React.ReactNode;
@@ -12,6 +13,7 @@ export const MobileDeviceSimulator: React.FC<MobileDeviceSimulatorProps> = ({
   onExitSimulator,
   deviceType = 'iphone'
 }) => {
+  const { t } = useLanguage();
   const [device, setDevice] = useState<'iphone' | 'android'>(deviceType);
 
   return (
@@ -57,7 +59,7 @@ export const MobileDeviceSimulator: React.FC<MobileDeviceSimulatorProps> = ({
           className="bg-slate-700 hover:bg-slate-600 text-white font-bold px-3 py-1.5 rounded-xl flex items-center gap-1.5 transition-colors"
         >
           <Monitor className="w-3.5 h-3.5 text-emerald-400" />
-          <span>Exit to Full Desktop</span>
+          <span>{t('exitPhoneMode')}</span>
         </button>
       </div>
 

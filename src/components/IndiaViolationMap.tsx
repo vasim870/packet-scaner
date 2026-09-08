@@ -19,6 +19,7 @@ import {
 } from 'lucide-react';
 import { StoreViolationReport, ProductScanResult } from '../types';
 import { DEFAULT_PAN_INDIA_VIOLATIONS } from '../data/panIndiaViolations';
+import { useLanguage } from '../i18n/LanguageContext';
 
 interface IndiaViolationMapProps {
   initialScanForReport?: ProductScanResult | null;
@@ -71,6 +72,7 @@ export const IndiaViolationMap: React.FC<IndiaViolationMapProps> = ({
   initialScanForReport,
   onNavigateToGrievance
 }) => {
+  const { t } = useLanguage();
   const [violations, setViolations] = useState<StoreViolationReport[]>(() => {
     try {
       const cached = localStorage.getItem('pccs_violations');
@@ -351,7 +353,7 @@ export const IndiaViolationMap: React.FC<IndiaViolationMapProps> = ({
             </span>
           </div>
           <h2 className="text-xl font-bold text-slate-900 tracking-tight">
-            All-India Retail Store Violation Map
+            {t('tabMap')}
           </h2>
           <p className="text-xs text-slate-500 max-w-2xl leading-relaxed">
             Real-time citizen reporting of Dual MRP overcharging at airport concessionaires and multiplexes, deceptive slack-fill at supermarkets, and expired commodities across India. Monitored by the Legal Metrology Inspectorate.
@@ -364,7 +366,7 @@ export const IndiaViolationMap: React.FC<IndiaViolationMapProps> = ({
           className="bg-emerald-700 hover:bg-emerald-800 text-white font-semibold px-4 py-2.5 rounded-xl text-sm flex items-center justify-center gap-2 shadow-xs transition-colors shrink-0 cursor-pointer"
         >
           <PlusCircle className="w-4.5 h-4.5" />
-          <span>Report Store Violation</span>
+          <span>{t('reportViolationBtn')}</span>
         </button>
       </div>
 
@@ -378,7 +380,7 @@ export const IndiaViolationMap: React.FC<IndiaViolationMapProps> = ({
               type="text"
               value={searchQuery}
               onChange={e => setSearchQuery(e.target.value)}
-              placeholder="Search store, brand, locality, city (e.g. PVR Delhi, CSMT Mumbai, Kempegowda, Banjara Hills)..."
+              placeholder={t('mapSearchPlaceholder')}
               className="w-full text-xs pl-9 pr-4 py-2.5 border border-slate-200 rounded-lg focus:outline-hidden focus:ring-2 focus:ring-emerald-500 bg-slate-50/50"
             />
           </div>

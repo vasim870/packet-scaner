@@ -13,6 +13,7 @@ import {
   RefreshCw
 } from 'lucide-react';
 import { ProductScanResult, GrievanceDraft, StoreViolationReport } from '../types';
+import { useLanguage } from '../i18n/LanguageContext';
 
 interface GrievanceFormProps {
   initialScanData?: ProductScanResult | null;
@@ -20,6 +21,7 @@ interface GrievanceFormProps {
 }
 
 export const GrievanceForm: React.FC<GrievanceFormProps> = ({ initialScanData, initialStoreData }) => {
+  const { t } = useLanguage();
   const [petitionerName, setPetitionerName] = useState('Vasim Akram');
   const [petitionerEmail, setPetitionerEmail] = useState('dvasimakram870@gmail.com');
   const [petitionerPhone, setPetitionerPhone] = useState('+91 98480 12345');
@@ -115,10 +117,10 @@ export const GrievanceForm: React.FC<GrievanceFormProps> = ({ initialScanData, i
             <span className="text-xs text-slate-500 font-medium">Department of Consumer Affairs</span>
           </div>
           <h2 className="text-xl font-bold text-slate-900 tracking-tight mt-1">
-            Statutory Grievance & Legal Notice Generator
+            {t('grievanceHeader')}
           </h2>
           <p className="text-xs text-slate-500 max-w-2xl mt-0.5">
-            Auto-generate a legally formulated complaint petition under Section 36 of the Legal Metrology Act, 2009 for the Controller of Legal Metrology, Telangana and the National Consumer Helpline portal.
+            {t('grievanceSubtitle')}
           </p>
         </div>
       </div>
@@ -129,7 +131,7 @@ export const GrievanceForm: React.FC<GrievanceFormProps> = ({ initialScanData, i
           <div className="border-b border-slate-100 pb-3">
             <h3 className="font-bold text-slate-900 text-sm flex items-center gap-2">
               <Scale className="w-4.5 h-4.5 text-emerald-700" />
-              Complainant & Violation Details
+              {t('petitionerDetails')}
             </h3>
             <p className="text-xs text-slate-500 mt-0.5">
               Fill in the transaction details to draft the statutory complaint
@@ -290,7 +292,7 @@ export const GrievanceForm: React.FC<GrievanceFormProps> = ({ initialScanData, i
               ) : (
                 <>
                   <FileText className="w-4 h-4" />
-                  <span>Generate Formal Notice & Case Docket</span>
+                  <span>{t('generateNoticeBtn')}</span>
                 </>
               )}
             </button>
@@ -322,7 +324,7 @@ export const GrievanceForm: React.FC<GrievanceFormProps> = ({ initialScanData, i
                     className="p-2 rounded-lg border border-slate-200 hover:bg-slate-50 text-slate-700 text-xs font-semibold flex items-center gap-1.5 transition-colors"
                   >
                     {copied ? <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
-                    <span>{copied ? 'Copied' : 'Copy Text'}</span>
+                    <span>{copied ? 'Copied' : t('copyNoticeBtn')}</span>
                   </button>
                   <button
                     id="btn-print-notice"
@@ -330,7 +332,7 @@ export const GrievanceForm: React.FC<GrievanceFormProps> = ({ initialScanData, i
                     className="p-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-2xs"
                   >
                     <Printer className="w-3.5 h-3.5" />
-                    <span>Print / Save PDF</span>
+                    <span>{t('printNoticeBtn')}</span>
                   </button>
                 </div>
               </div>

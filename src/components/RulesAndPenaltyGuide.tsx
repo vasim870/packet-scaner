@@ -12,8 +12,10 @@ import {
   ChevronDown,
   ChevronUp
 } from 'lucide-react';
+import { useLanguage } from '../i18n/LanguageContext';
 
 export const RulesAndPenaltyGuide: React.FC = () => {
+  const { t } = useLanguage();
   const [activeTab, setActiveTab] = useState<'rules' | 'calculator' | 'tolerances'>('rules');
   const [expandedRule, setExpandedRule] = useState<string | null>('rule-6');
 
@@ -128,10 +130,10 @@ All declarations must be conspicuous, legible, and prominent with sufficient col
             <span className="text-xs text-slate-500">Ministry of Consumer Affairs</span>
           </div>
           <h2 className="text-xl font-bold text-slate-900 tracking-tight mt-1">
-            Legal Metrology (Packaged Commodities) Rules 2011 & Penalty Matrix
+            {t('rulesTitle')}
           </h2>
           <p className="text-xs text-slate-500 max-w-2xl mt-0.5">
-            Complete regulatory clauses, mandatory declaration rules, permissible error thresholds, and statutory fine calculator under Section 36 of the Legal Metrology Act, 2009.
+            {t('rulesSubtitle')}
           </p>
         </div>
 
@@ -146,7 +148,7 @@ All declarations must be conspicuous, legible, and prominent with sufficient col
                 : 'text-slate-600 hover:text-slate-900'
             }`}
           >
-            Statutory Rules
+            {t('rulesTabRules')}
           </button>
           <button
             id="tab-penalty-calc"
@@ -157,7 +159,7 @@ All declarations must be conspicuous, legible, and prominent with sufficient col
                 : 'text-slate-600 hover:text-slate-900'
             }`}
           >
-            Penalty Calculator
+            {t('rulesTabCalc')}
           </button>
           <button
             id="tab-tolerances"
@@ -168,7 +170,7 @@ All declarations must be conspicuous, legible, and prominent with sufficient col
                 : 'text-slate-600 hover:text-slate-900'
             }`}
           >
-            Permissible Errors
+            {t('rulesTabTolerances')}
           </button>
         </div>
       </div>

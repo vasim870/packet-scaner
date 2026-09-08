@@ -12,6 +12,7 @@ import {
   ArrowUpRight,
   Scale
 } from 'lucide-react';
+import { useLanguage } from '../i18n/LanguageContext';
 
 const DEFAULT_STATS = {
   totalScansPerformed: 1248,
@@ -39,6 +40,7 @@ const DEFAULT_STATS = {
 };
 
 export const AnalyticsDashboard: React.FC = () => {
+  const { t } = useLanguage();
   const [stats, setStats] = useState<any>(() => DEFAULT_STATS);
   const [inspections, setInspections] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
@@ -89,7 +91,7 @@ export const AnalyticsDashboard: React.FC = () => {
             <span className="text-xs text-slate-500 font-medium">State & City Regulatory Metrics</span>
           </div>
           <h2 className="text-xl font-bold text-slate-900 tracking-tight mt-1">
-            Enforcement & Compliance Analytics
+            {t('analyticsTitle')}
           </h2>
           <p className="text-xs text-slate-500 max-w-2xl mt-0.5">
             Aggregated audit telemetry, statutory fines levied under Section 36, and hotspot risk clustering across all Indian retail divisions.
@@ -111,7 +113,7 @@ export const AnalyticsDashboard: React.FC = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-xs space-y-2">
           <div className="flex items-center justify-between text-slate-500 text-xs font-semibold">
-            <span>Total Packages Audited</span>
+            <span>{t('totalScans')}</span>
             <div className="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-700 flex items-center justify-center">
               <Scale className="w-4 h-4" />
             </div>
@@ -127,7 +129,7 @@ export const AnalyticsDashboard: React.FC = () => {
 
         <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-xs space-y-2">
           <div className="flex items-center justify-between text-slate-500 text-xs font-semibold">
-            <span>All-India Violations Reported</span>
+            <span>{t('totalReports')}</span>
             <div className="w-8 h-8 rounded-lg bg-amber-50 text-amber-700 flex items-center justify-center">
               <Flame className="w-4 h-4" />
             </div>
@@ -143,7 +145,7 @@ export const AnalyticsDashboard: React.FC = () => {
 
         <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-xs space-y-2">
           <div className="flex items-center justify-between text-slate-500 text-xs font-semibold">
-            <span>Statutory Penalties Estimated</span>
+            <span>{t('penaltiesLevied')}</span>
             <div className="w-8 h-8 rounded-lg bg-rose-50 text-rose-700 flex items-center justify-center">
               <IndianRupee className="w-4 h-4" />
             </div>
