@@ -23,9 +23,12 @@ import { MobileDownloadView } from './components/MobileDownloadView';
 import { ProductScanResult, StoreViolationReport } from './types';
 import { Scale, Phone, ExternalLink, ShieldCheck, Smartphone, Download, X } from 'lucide-react';
 import { usePWAInstall } from './hooks/usePWAInstall';
+import { useTheme } from './hooks/useTheme';
 
 export default function App() {
+  const { isDark } = useTheme();
   const [activeTab, setActiveTab] = useState<'scanner' | 'map' | 'rules' | 'grievance' | 'analytics' | 'download'>('scanner');
+
   const [latestScan, setLatestScan] = useState<ProductScanResult | null>(null);
   const [selectedStoreForNotice, setSelectedStoreForNotice] = useState<StoreViolationReport | null>(null);
   const [isMobileSimulator, setIsMobileSimulator] = useState(false);
@@ -161,7 +164,7 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-100 flex flex-col font-sans text-slate-800 antialiased selection:bg-emerald-200 selection:text-emerald-900 pb-16 md:pb-0">
+    <div className="min-h-screen bg-slate-100 dark:bg-slate-950 flex flex-col font-sans text-slate-800 dark:text-slate-100 antialiased selection:bg-emerald-200 selection:text-emerald-900 pb-16 md:pb-0 transition-colors duration-200">
       {/* Top Header */}
       <Header
         activeTab={activeTab}

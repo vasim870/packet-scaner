@@ -168,12 +168,14 @@ export const MobileDownloadView: React.FC<MobileDownloadViewProps> = ({ onOpenSc
               </div>
 
               {/* Real QR Code linking directly to app */}
-              <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 inline-block shadow-inner">
+              <div className="keep-white bg-white p-4 rounded-xl border border-slate-200 inline-block shadow-inner">
                 <QRCodeSVG
                   value={currentUrl}
                   size={180}
                   level="M"
                   includeMargin={false}
+                  bgColor="#ffffff"
+                  fgColor="#0f172a"
                   className="rounded-lg mx-auto"
                 />
               </div>

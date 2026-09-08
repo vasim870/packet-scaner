@@ -13,22 +13,22 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
   onQuickCameraClick
 }) => {
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-t border-slate-200 shadow-lg px-2 py-1 safe-area-pb">
+    <nav className="fixed bottom-0 left-0 right-0 z-50 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-t border-slate-200 dark:border-slate-800 shadow-lg px-2 py-1 safe-area-pb">
       <div className="max-w-md mx-auto flex items-center justify-around relative">
         {/* Tab 1: Scanner */}
         <button
           id="mobile-nav-scanner"
           onClick={() => setActiveTab('scanner')}
-          className={`flex flex-col items-center justify-center py-1.5 px-2 rounded-xl transition-all ${
+          className={`flex flex-col items-center justify-center py-1.5 px-2 rounded-xl transition-all cursor-pointer ${
             activeTab === 'scanner'
-              ? 'text-emerald-700 font-bold'
-              : 'text-slate-500 hover:text-slate-800'
+              ? 'text-emerald-700 dark:text-emerald-400 font-bold'
+              : 'text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200'
           }`}
         >
           <div className="relative">
             <Scan className="w-5 h-5" />
             {activeTab === 'scanner' && (
-              <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-emerald-600 rounded-full" />
+              <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-emerald-600 dark:bg-emerald-400 rounded-full" />
             )}
           </div>
           <span className="text-[10px] mt-1 tracking-tight">Scanner</span>
@@ -38,10 +38,10 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
         <button
           id="mobile-nav-map"
           onClick={() => setActiveTab('map')}
-          className={`flex flex-col items-center justify-center py-1.5 px-2 rounded-xl transition-all relative ${
+          className={`flex flex-col items-center justify-center py-1.5 px-2 rounded-xl transition-all relative cursor-pointer ${
             activeTab === 'map'
-              ? 'text-emerald-700 font-bold'
-              : 'text-slate-500 hover:text-slate-800'
+              ? 'text-emerald-700 dark:text-emerald-400 font-bold'
+              : 'text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200'
           }`}
         >
           <div className="relative">
@@ -50,7 +50,7 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
               LIVE
             </span>
             {activeTab === 'map' && (
-              <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-emerald-600 rounded-full" />
+              <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-emerald-600 dark:bg-emerald-400 rounded-full" />
             )}
           </div>
           <span className="text-[10px] mt-1 tracking-tight">India Map</span>
@@ -65,11 +65,11 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
               if (onQuickCameraClick) onQuickCameraClick();
             }}
             title="Instant Camera Scan"
-            className="w-13 h-13 rounded-full bg-gradient-to-tr from-emerald-800 via-emerald-700 to-teal-500 text-white shadow-lg shadow-emerald-700/40 flex items-center justify-center ring-4 ring-white active:scale-95 transition-transform"
+            className="w-13 h-13 rounded-full bg-gradient-to-tr from-emerald-800 via-emerald-700 to-teal-500 text-white shadow-lg shadow-emerald-700/40 flex items-center justify-center ring-4 ring-white dark:ring-slate-900 active:scale-95 transition-transform cursor-pointer"
           >
             <Camera className="w-6 h-6" />
           </button>
-          <span className="text-[9px] font-bold text-emerald-800 mt-0.5 tracking-tight">
+          <span className="text-[9px] font-bold text-emerald-800 dark:text-emerald-300 mt-0.5 tracking-tight">
             Quick Scan
           </span>
         </div>
@@ -78,16 +78,16 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
         <button
           id="mobile-nav-rules"
           onClick={() => setActiveTab('rules')}
-          className={`flex flex-col items-center justify-center py-1.5 px-2 rounded-xl transition-all ${
+          className={`flex flex-col items-center justify-center py-1.5 px-2 rounded-xl transition-all cursor-pointer ${
             activeTab === 'rules'
-              ? 'text-emerald-700 font-bold'
-              : 'text-slate-500 hover:text-slate-800'
+              ? 'text-emerald-700 dark:text-emerald-400 font-bold'
+              : 'text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200'
           }`}
         >
           <div className="relative">
             <BookOpen className="w-5 h-5" />
             {activeTab === 'rules' && (
-              <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-emerald-600 rounded-full" />
+              <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-emerald-600 dark:bg-emerald-400 rounded-full" />
             )}
           </div>
           <span className="text-[10px] mt-1 tracking-tight">Rules</span>
@@ -97,16 +97,16 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
         <button
           id="mobile-nav-grievance"
           onClick={() => setActiveTab('grievance')}
-          className={`flex flex-col items-center justify-center py-1.5 px-2 rounded-xl transition-all ${
+          className={`flex flex-col items-center justify-center py-1.5 px-2 rounded-xl transition-all cursor-pointer ${
             activeTab === 'grievance'
-              ? 'text-emerald-700 font-bold'
-              : 'text-slate-500 hover:text-slate-800'
+              ? 'text-emerald-700 dark:text-emerald-400 font-bold'
+              : 'text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200'
           }`}
         >
           <div className="relative">
             <FileText className="w-5 h-5" />
             {activeTab === 'grievance' && (
-              <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-emerald-600 rounded-full" />
+              <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-emerald-600 dark:bg-emerald-400 rounded-full" />
             )}
           </div>
           <span className="text-[10px] mt-1 tracking-tight">Notice</span>
@@ -116,16 +116,16 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
         <button
           id="mobile-nav-analytics"
           onClick={() => setActiveTab('analytics')}
-          className={`flex flex-col items-center justify-center py-1.5 px-2 rounded-xl transition-all ${
+          className={`flex flex-col items-center justify-center py-1.5 px-2 rounded-xl transition-all cursor-pointer ${
             activeTab === 'analytics'
-              ? 'text-emerald-700 font-bold'
-              : 'text-slate-500 hover:text-slate-800'
+              ? 'text-emerald-700 dark:text-emerald-400 font-bold'
+              : 'text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200'
           }`}
         >
           <div className="relative">
             <BarChart3 className="w-5 h-5" />
             {activeTab === 'analytics' && (
-              <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-emerald-600 rounded-full" />
+              <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-emerald-600 dark:bg-emerald-400 rounded-full" />
             )}
           </div>
           <span className="text-[10px] mt-1 tracking-tight">Stats</span>
@@ -135,19 +135,19 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
         <button
           id="mobile-nav-download"
           onClick={() => setActiveTab('download')}
-          className={`flex flex-col items-center justify-center py-1.5 px-2 rounded-xl transition-all ${
+          className={`flex flex-col items-center justify-center py-1.5 px-2 rounded-xl transition-all cursor-pointer ${
             activeTab === 'download'
-              ? 'text-emerald-700 font-bold'
-              : 'text-emerald-800 font-semibold'
+              ? 'text-emerald-700 dark:text-emerald-400 font-bold'
+              : 'text-emerald-800 dark:text-emerald-300 font-semibold'
           }`}
         >
           <div className="relative">
-            <Download className="w-5 h-5 text-emerald-700" />
+            <Download className="w-5 h-5 text-emerald-700 dark:text-emerald-400" />
             {activeTab === 'download' && (
-              <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-emerald-600 rounded-full" />
+              <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-emerald-600 dark:bg-emerald-400 rounded-full" />
             )}
           </div>
-          <span className="text-[10px] mt-1 tracking-tight text-emerald-700 font-bold">Install</span>
+          <span className="text-[10px] mt-1 tracking-tight text-emerald-700 dark:text-emerald-400 font-bold">Install</span>
         </button>
       </div>
     </nav>

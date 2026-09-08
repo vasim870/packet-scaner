@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Scale, Download, Share2, Smartphone, Monitor, ShieldCheck, Wifi, Battery } from 'lucide-react';
+import { Scale, Download, Share2, Smartphone, Monitor, ShieldCheck, Wifi, Battery, Sun, Moon } from 'lucide-react';
 import { usePWAInstall } from '../hooks/usePWAInstall';
+import { useTheme } from '../hooks/useTheme';
 
 interface MobileAppHeaderProps {
   isSimulator?: boolean;
@@ -14,6 +15,7 @@ export const MobileAppHeader: React.FC<MobileAppHeaderProps> = ({
   onOpenInstallModal
 }) => {
   const { isInstallable, isInstalled } = usePWAInstall();
+  const { isDark, toggleTheme } = useTheme();
   const [currentTime, setCurrentTime] = useState('09:41');
 
   useEffect(() => {
@@ -65,12 +67,27 @@ export const MobileAppHeader: React.FC<MobileAppHeaderProps> = ({
         </div>
 
         <div className="flex items-center gap-1.5">
+          {/* Theme Toggle Button */}
+          <button
+            id="mobile-header-theme-toggle"
+            onClick={toggleTheme}
+            aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+            title={isDark ? "Switch to light mode" : "Switch to dark mode"}
+            className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs flex items-center border border-slate-700 active:scale-95 transition-all cursor-pointer"
+          >
+            {isDark ? (
+              <Sun className="w-3.5 h-3.5 text-amber-400 fill-amber-400/20" />
+            ) : (
+              <Moon className="w-3.5 h-3.5 text-slate-300 fill-slate-300/20" />
+            )}
+          </button>
+
           {/* Install App Button */}
           {!isInstalled && (
             <button
               id="mobile-header-install-btn"
               onClick={onOpenInstallModal}
-              className="bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white text-[11px] font-bold px-2.5 py-1.5 rounded-lg flex items-center gap-1 transition-all shadow-xs"
+              className="bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white text-[11px] font-bold px-2.5 py-1.5 rounded-lg flex items-center gap-1 transition-all shadow-xs cursor-pointer"
             >
               <Download className="w-3.5 h-3.5" />
               <span>Get App</span>
@@ -83,17 +100,17 @@ export const MobileAppHeader: React.FC<MobileAppHeaderProps> = ({
               id="btn-toggle-device-view"
               onClick={onToggleSimulator}
               title={isSimulator ? 'Exit Mobile Frame' : 'Preview in Phone Frame'}
-              className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs flex items-center gap-1 border border-slate-700 active:scale-95 transition-all"
+              className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs flex items-center gap-1 border border-slate-700 active:scale-95 transition-all cursor-pointer"
             >
               {isSimulator ? (
                 <>
                   <Monitor className="w-3.5 h-3.5 text-emerald-400" />
-                  <span className="text-[10px] hidden sm:inline">Desktop View</span>
+                  <span className="text-[10px] hidden sm:inline">Desktop</span>
                 </>
               ) : (
                 <>
                   <Smartphone className="w-3.5 h-3.5 text-emerald-400" />
-                  <span className="text-[10px] hidden sm:inline">Phone Frame</span>
+                  <span className="text-[10px] hidden sm:inline">Phone</span>
                 </>
               )}
             </button>
@@ -103,3 +120,4 @@ export const MobileAppHeader: React.FC<MobileAppHeaderProps> = ({
     </header>
   );
 };
+
