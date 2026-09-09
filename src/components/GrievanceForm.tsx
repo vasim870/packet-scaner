@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import { ProductScanResult, GrievanceDraft, StoreViolationReport } from '../types';
 import { useLanguage } from '../i18n/LanguageContext';
+import { generateLocalNoticeDraft } from '../utils/complianceEngine';
 
 interface GrievanceFormProps {
   initialScanData?: ProductScanResult | null;
@@ -75,16 +76,41 @@ export const GrievanceForm: React.FC<GrievanceFormProps> = ({ initialScanData, i
         additionalNotes: notes
       };
 
-      const res = await fetch('/api/complaint/generate', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      });
+      try {
+        const res = await fetch('/api/complaint/generate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
 
-      const data = await res.json();
-      if (data.success && data.complaint) {
-        setDraftResult(data.complaint);
+        if (res.ok) {
+          const data = await res.json();
+          if (data.success && data.complaint) {
+            setDraftResult(data.complaint);
+            return;
+          }
+        }
+      } catch (fetchErr) {
+        console.warn('Network issue generating notice, using autonomous statutory generator:', fetchErr);
       }
+
+      // Autonomous client-side Form 1 Statutory Notice fallback
+      const localDraft = generateLocalNoticeDraft({
+        petitionerName,
+        petitionerEmail,
+        petitionerPhone,
+        petitionerCity: locality.split(',')[1]?.trim() || 'New Delhi',
+        storeName,
+        storeLocality: locality,
+        storeCity: locality.split(',')[1]?.trim() || 'New Delhi',
+        productName,
+        brand,
+        mrp,
+        chargedPrice,
+        violationsList: initialScanData?.violations || [],
+        additionalNotes: notes
+      });
+      setDraftResult(localDraft);
     } catch (err) {
       console.error('Failed to generate notice:', err);
     } finally {

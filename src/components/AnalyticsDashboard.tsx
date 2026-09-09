@@ -13,6 +13,7 @@ import {
   Scale
 } from 'lucide-react';
 import { useLanguage } from '../i18n/LanguageContext';
+import { getLocalInspections } from '../utils/complianceEngine';
 
 const DEFAULT_STATS = {
   totalScansPerformed: 1248,
@@ -48,24 +49,39 @@ export const AnalyticsDashboard: React.FC = () => {
   const fetchStats = async (retryCount = 0) => {
     try {
       setLoading(true);
-      const [statsRes, inspRes] = await Promise.all([
+      const localList = getLocalInspections();
+
+      const [statsRes, inspRes] = await Promise.allSettled([
         fetch('/api/stats'),
         fetch('/api/inspections')
       ]);
 
-      if (statsRes.ok) {
-        const statsData = await statsRes.json();
+      if (statsRes.status === 'fulfilled' && statsRes.value.ok) {
+        const statsData = await statsRes.value.json();
         setStats(statsData);
       }
-      if (inspRes.ok) {
-        const inspData = await inspRes.json();
-        if (inspData.success && inspData.inspections) {
-          setInspections(inspData.inspections);
+      if (inspRes.status === 'fulfilled' && inspRes.value.ok) {
+        const inspData = await inspRes.value.json();
+        if (inspData.success && Array.isArray(inspData.inspections)) {
+          // Merge local and server inspections avoiding duplicates
+          const seen = new Set<string>();
+          const merged = [...localList, ...inspData.inspections].filter(item => {
+            if (!item.id || seen.has(item.id)) return false;
+            seen.add(item.id);
+            return true;
+          });
+          setInspections(merged);
         }
+      } else if (localList.length > 0) {
+        setInspections(localList);
       }
     } catch (err: any) {
       console.warn('Analytics live sync notice (using standard metrics dataset):', err?.message || 'Server check');
       setStats((prev: any) => prev || DEFAULT_STATS);
+      const localList = getLocalInspections();
+      if (localList.length > 0) {
+        setInspections(localList);
+      }
       if (retryCount < 2) {
         setTimeout(() => fetchStats(retryCount + 1), 2000 * (retryCount + 1));
       }
